@@ -1,4 +1,4 @@
-let count = 10;
+let count = 20;
 let apiKey = "l7kTxXTSka2MaaMbu5pxJEXd81sho8CYoCCZFRXTCFE";
 let apiURL = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`
 let photosArr = [];

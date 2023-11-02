@@ -11,7 +11,14 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'Agbalumo', serif;
-    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+    /* background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); */
+    background:
+      100px 100px/calc(2*100px) calc(2*100px) conic-gradient(at calc(500%/6) 50%,#55fbc4 25%,#0000 0),0 0/calc(2*100px) calc(2*100px) conic-gradient(at calc(500%/6) 50%,#55fbc4 25%,#0000 0),
+      100px 100px/calc(2*100px) calc(2*100px) conic-gradient(at calc(200%/3) 50%,#403c3c 25%,#0000 0),0 0/calc(2*100px) calc(2*100px) conic-gradient(at calc(200%/3) 50%,#403c3c 25%,#0000 0),
+      repeating-conic-gradient(#2da647 0 25%,#0000 0 50%) 0 0/calc(2*100px) calc(2*100px),
+      linear-gradient(#2da647 calc(100%/3),#403c3c 0 calc(200%/3),#55fbc4 0)
+       0 0/100px 100px;
+       backdrop-filter: blur(2px);
 }
 h1{
     font-size: 3rem;
@@ -22,6 +29,9 @@ h1{
     justify-content: center;
     align-items: center;
     margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    text-decoration: dashed underline;
 }
 .container{
     border-radius: 20px 20px;
