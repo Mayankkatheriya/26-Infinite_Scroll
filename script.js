@@ -1,42 +1,61 @@
-let count = 10
-let apiKey = "HYarpIO8etGPRsjwDbZzhN9oyW1b3YIh6AdXuGDNRb8";
+let count = 10;
+let apiKey = "l7kTxXTSka2MaaMbu5pxJEXd81sho8CYoCCZFRXTCFE";
 let apiURL = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`
-let photosArr =  [];
-let imgContainer = document.querySelector('.container')
+let photosArr = [];
+let imgContainer = document.querySelector(".img-container");
+let container = document.querySelector(".container");
+// let loader = document.querySelector(".loading")
 
-function setAttributes(element, attributes){
-    for (const key in attributes) {
-        element.setAttribute(key, attributes[key])
-    }
+getPhotos();
+
+async function getPhotos() {
+  const response = await fetch(apiURL);
+  photosArr = await response.json();
+  // console.log(photosArr);
+  displayPhotos();
 }
 
 function displayPhotos() {
-    photosArr.forEach((photo)=>{
-        const item = document.createElement("a");
-        setAttributes(item , {
-            href : photo.links.html,
-            target : "_blank"
-        })
-        const img = document.createElement('img');
-        setAttributes(img, {
-            src : photo.urls.regular,
-            alt : photo.alt_description
-        })
+  photosArr.forEach((photo) => {
+    let heartClass = "fa-regular fa-heart"
+    if(localStorage.getItem(photo.id)){
+        if(localStorage.getItem(photo.id)=="true"){
+            heartClass = "fa-solid fa-heart"
+        }
+        else{
+            heartClass = "fa-regular fa-heart"
 
-        item.append(img)
-        imgContainer.appendChild(item);
-    })
-}
-
-async function getPhotos() {
-    const response = await fetch(apiURL)
-    photosArr = await response.json();
-    console.log(photosArr);
-    displayPhotos()
-}
-window.addEventListener("scroll", ()=>{
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        getPhotos()
+        }
     }
-})
-getPhotos()
+    const photoDiv = document.createElement("div");
+    photoDiv.classList.add("photo-div");
+    photoDiv.innerHTML = `
+          <div class="photo-box">
+              <a class="img-box" href="${photo.links.html}" target="_blank"><img src="${photo.urls.regular}" alt=""></a>
+              <div class="icons">
+                  <div class="like" onclick = "likeCheck('${photo.id}', event)">
+                      <i class="${heartClass}" id="heart"></i>
+                  </div>
+                  <a class="download-img" href="${photo.links.download}" download target = _blank><i class="fa-regular fa-bookmark"></i></a>
+              </div>
+          </div>`;
+    imgContainer.appendChild(photoDiv);
+  });
+}
+
+function likeCheck(id, e) {
+  console.log(e.target.className);
+  if (e.target.className === "fa-regular fa-heart") {
+    localStorage.setItem(id, true)
+    e.target.className = "fa-solid fa-heart"
+  } else {
+    localStorage.setItem(id, false)
+    e.target.className = "fa-regular fa-heart"
+  }
+}
+
+container.addEventListener("scroll", (e) => {
+  if (container.scrollTop + e.target.offsetHeight >= container.scrollHeight) {
+    getPhotos();
+  }
+});
