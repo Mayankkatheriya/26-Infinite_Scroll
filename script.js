@@ -44,7 +44,6 @@ function displayPhotos() {
 }
 
 function likeCheck(id, e) {
-  console.log(e.target.className);
   if (e.target.className === "fa-regular fa-heart") {
     localStorage.setItem(id, true)
     e.target.className = "fa-solid fa-heart"
@@ -53,6 +52,15 @@ function likeCheck(id, e) {
     e.target.className = "fa-regular fa-heart"
   }
 }
+
+// function downloadCheck(e) {
+//     console.log(e.target);
+//     if (e.target.innerHTML === '<i class="fa-regular fa-bookmark"></i>') {
+//       e.target.innerHTML = '<i class="fa-solid fa-bookmark"></i>'
+//     } else {
+//       e.target.innerHTML = '<i class="fa-regular fa-bookmark"></i>'
+//     }
+//   }
 
 container.addEventListener("scroll", (e) => {
   if (container.scrollTop + e.target.offsetHeight >= container.scrollHeight) {

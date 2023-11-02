@@ -10,7 +10,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Agbalumo', serif
+    font-family: 'Agbalumo', serif;
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 }
 h1{
     font-size: 3rem;
@@ -81,6 +82,7 @@ h1{
 .img-box img{
     width: 100%;
     height: 100%;
+    border-radius: 10px;
 }
 .icons{
     height: 50px;
@@ -109,3 +111,17 @@ h1{
     text-align: center;
     width: 100%;
 } */
+@media screen and (max-width: 425px) {
+    h1{
+        display: none;
+    }
+    .container{
+        max-height: 100vh;
+        max-width: 100%;
+        border-radius: 0;
+    }
+    .top-notch{
+        border-radius: 0;        
+    }
+
+}
